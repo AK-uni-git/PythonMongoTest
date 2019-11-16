@@ -25,9 +25,9 @@ collection = db.buymodels
 
 for user in collection.find( {'username': '{0}'.format(username)} ):
         print(user)
-        print(user["buydate"].split(" "))
         for product in db.datamodels.find( {'ean': user["ean"] } ):
                 print(product)
-                name = product['name']
+                products.append(Product(product["name"], user["buydate"], product["price"], product["usage"]))
 
+print(products)
 client.close()
