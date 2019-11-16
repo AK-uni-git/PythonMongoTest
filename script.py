@@ -2,13 +2,14 @@ import sys
 from pymongo import MongoClient
 import datetime
 
-class Person:
+class Product:
   def __init__(self, name, purchaseDate, price, usage):
     self.name = name
     self.purchaseDate = purchaseDate
     self.price = price
     self.usage = usage
 
+products = []
 if (len(sys.argv) > 1): 
         username = sys.argv[1]
 else:
@@ -23,7 +24,10 @@ collection = db.buymodels
 
 
 for user in collection.find( {'username': '{0}'.format(username)} ):
-        print(int(user["ean"]) )
+        print(user)
+        print(user["date"])
         for product in db.datamodels.find( {'ean': user["ean"] } ):
                 print(product)
+                name = product['name']
+
 client.close()
