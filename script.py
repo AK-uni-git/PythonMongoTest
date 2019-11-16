@@ -8,12 +8,14 @@ class Product:
                 self.purchaseDate = purchaseDate
                 self.price = price
                 self.usage = usage
+                print(datetime.date.today() - purchaseDate)
 
         def __str__(self):
-                return("name {0}\ndate {1}\nprice {2}\n usage {3}".format(self.name, self.purchaseDate, self.price, self.usage))
+                return("name {0}\ndate {1}\nprice {2}\nusage {3}".format(self.name, self.purchaseDate, self.price, self.usage))
 
 
 products = []
+
 if (len(sys.argv) > 1): 
         username = sys.argv[1]
 else:
@@ -33,6 +35,8 @@ for user in collection.find( {'username': '{0}'.format(username)} ):
                 print(product)
                 products.append(Product(product["name"], user["buydate"], product["price"], product["usage"]))
 
+#debug
 for product in products:
         print(product)
+        print()
 client.close()
