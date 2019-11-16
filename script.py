@@ -7,7 +7,7 @@ print(client.database_names())
 db = client['Datas']
 print(db.collection_names())
 print(db)
-collection = db.DataModels
+collection = db.datamodels
 print(collection)
 for post in collection.find():
         print(post)
