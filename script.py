@@ -3,11 +3,15 @@ from pymongo import MongoClient
 import datetime
 
 class Product:
-  def __init__(self, name, purchaseDate, price, usage):
-    self.name = name
-    self.purchaseDate = purchaseDate
-    self.price = price
-    self.usage = usage
+        def __init__(self, name, purchaseDate, price, usage):
+                self.name = name
+                self.purchaseDate = purchaseDate
+                self.price = price
+                self.usage = usage
+
+        def __str__(self):
+                return("name {0}\ndate {1}\nprice {2}\n usage {3}".format(self.name, self.purchaseDate, self.price, self.usage))
+
 
 products = []
 if (len(sys.argv) > 1): 
