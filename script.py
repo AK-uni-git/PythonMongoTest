@@ -10,5 +10,6 @@ print(db.collection_names())
 collection = db.datamodels
 
 for post in collection.find():
-        print(post + "\n")
+        print(post)
+        print()
 client.close()
