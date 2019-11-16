@@ -8,7 +8,7 @@ class Product:
                 self.purchaseDate = purchaseDate
                 self.price = price
                 self.usage = usage
-                print((datetime.datetime.now() - purchaseDate).days() 
+                print((datetime.datetime.now() - purchaseDate).days() )
 
         def __str__(self):
                 return("name {0}\ndate {1}\nprice {2}\nusage {3}".format(self.name, self.purchaseDate, self.price, self.usage))
