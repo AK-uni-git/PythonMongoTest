@@ -33,5 +33,6 @@ for user in collection.find( {'username': '{0}'.format(username)} ):
                 print(product)
                 products.append(Product(product["name"], user["buydate"], product["price"], product["usage"]))
 
-print(products)
+for product in products:
+        print(product)
 client.close()
