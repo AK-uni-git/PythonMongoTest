@@ -14,7 +14,7 @@ print(db.collection_names())
 collection = db.buymodels
 
 for user in collection.find( {'username': '{0:d}'.format(username)} ):
-        print(user["ean"])
-        for product in db.datamodels.find( {'ean': '{0:d}'.format(user["ean"])} ):
+        print(int(user["ean"]) )
+        for product in db.datamodels.find( {'ean': '{0}'.format(int(user["ean"])} )):
                 print(product)
 client.close()
