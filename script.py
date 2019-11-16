@@ -13,8 +13,8 @@ print(db.collection_names())
 
 collection = db.buymodels
 
-for user in collection.find( {'username': '{0}'.format(username)} ):
+for user in collection.find( {'username': '{0:d}'.format(username)} ):
         print(user["ean"])
-        for product in db.datamodels.find( {'ean': '{0}'.format(user["ean"])} ):
+        for product in db.datamodels.find( {'ean': '{0:d}'.format(user["ean"])} ):
                 print(product)
 client.close()
