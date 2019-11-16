@@ -1,6 +1,7 @@
 import sys
 from pymongo import MongoClient
 import datetime
+import random
 
 from bokeh.io import show, output_file
 from bokeh.plotting import figure
@@ -37,23 +38,18 @@ def main():
                 username ="JokuPelle"
 
         client = MongoClient('mongodb+srv://spend:wise@spendwisedata-gaqmj.mongodb.net/Datas')
-        print(client.database_names())
+        #print(client.list_database_names())
         db = client['Datas']
-        print(db.collection_names())
+        #print(db.list_collection_names())
 
         collection = db.buymodels
 
 
         for user in collection.find( {'username': '{0}'.format(username)} ):
-                print(user)
                 for product in db.datamodels.find( {'ean': user["ean"] } ):
-                        print(product)
                         products.append(Product(product["name"], user["buydate"], product["price"], product["usage"]))
 
-        #debug
-        for product in products:
-                print(product)
-                print()
+
 
         client.close()
 
@@ -84,6 +80,8 @@ def plot(products):
 
         p.y_range.start = 0
         p.y_range.end = 50
+        #Don't touch, will F up formatting if more than ~3 items.
+        #p.plot_width = 400
         p.x_range.range_padding = 0.1
         p.xgrid.grid_line_color = None
         p.axis.minor_tick_line_color = None
@@ -92,7 +90,14 @@ def plot(products):
         p.legend.orientation = "horizontal"
 
         show(p)
-        export_png(p, filename="plot.png")
-
+        
+        if (len(sys.argv) > 2): 
+                path = sys.argv[1]
+        else:
+                path = "."
+        randomInt = random.randrange(100000, 99999999)
+        export_png(p, filename="{0}/plot{1}.png".format(path, randomInt))
+        print("{0}/plot{1}.png".format(path, randomInt))
+        sys.stdout.flush()
 
 main()

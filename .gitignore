@@ -3,3 +3,5 @@ stacked.html
 plot.py
 date.py
 plot.png
+plot*.png
+*.png
