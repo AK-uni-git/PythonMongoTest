@@ -1,14 +1,14 @@
 import sys
-from pymongo import Connection
+from pymongo import MongoClient
+client = MongoClient('mongodb+srv://spend:wise@spendwisedata-gaqmj.mongodb.net/Datas')
 
 
-connection = Connection()
-connection = Connection('localhost', 27017)
-db = connection.testdb
-collection = db.testcollection
+
+db = client.SpendWise
+collection = db.Datas
 for post in collection.find():
         print(post)
-connection.close()
+client.close()
 
 dataToSendBack = sys.argv[1] + "\n" + sys.version + "\n" 
 print(dataToSendBack)
