@@ -1,15 +1,19 @@
 import sys
 from pymongo import MongoClient
 
+if len(sys.argv > 1): 
+        username = sys.argv[1]
+else:
+        username ="JokuPelle"
 
 client = MongoClient('mongodb+srv://spend:wise@spendwisedata-gaqmj.mongodb.net/Datas')
 print(client.database_names())
 db = client['Datas']
 print(db.collection_names())
 
-collection = db.datamodels
+collection = db.buymodels
 
-for post in collection.find():
-        print(post)
+for user in collection.find( {'username': '{0}'.format(username)} ):
+        print(user)
         print()
 client.close()
