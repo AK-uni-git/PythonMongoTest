@@ -4,9 +4,9 @@ client = MongoClient('mongodb+srv://spend:wise@spendwisedata-gaqmj.mongodb.net/D
 
 
 
-db = client.SpendWise
+db = client.Datas
 print(db)
-collection = db.Datas
+collection = db.DataModels
 print(collection)
 for post in collection.find():
         print(post)
